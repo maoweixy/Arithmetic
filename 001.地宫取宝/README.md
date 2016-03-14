@@ -1,8 +1,12 @@
 题目分析：数据量不大，考虑用四维dp，dp[i][j][ma][num]表示到点(i，j)时最大值为ma取得了num个宝贝的方法数，
+
 对于某个点如果它的宝藏值大于当前最大值，则我们可以取也可以不取，否则我们只能不取，因此转移方程：
-if(ma < val[i][j])  
-dp[i][j][val[i][j]][num + 1] = (dp[i][j][val[i][j]][num + 1] + dp[i - 1][j][ma][num] + dp[i][j - 1][ma][num]) % MOD //取
-dp[i][j][ma][num] = (dp[i][j][ma][num] + dp[i - 1][j][ma][num] + dp[i][j - 1][ma][num]) % MOD //不取
+
+    if(ma < val[i][j])  
+    dp[i][j][val[i][j]][num + 1] = (dp[i][j][val[i][j]][num + 1] + dp[i - 1][j][ma][num] + dp[i][j - 1][ma][num]) % MOD //取
+    
+    dp[i][j][ma][num] = (dp[i][j][ma][num] + dp[i - 1][j][ma][num] + dp[i][j - 1][ma][num]) % MOD //不取
+
 (这里没有else，因为不论我们能不能取，我们都可以选择不取)，
 最后我们只要累加dp[n][m][各最大值][k]的值即可，初始dp[1][1][val[1][1]][1] = 1第一个点取，dp[1][1][0][0]第一点不取
 
