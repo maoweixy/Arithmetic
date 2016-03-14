@@ -17,6 +17,7 @@ public class Main {
 			}
 		}
 		dp[1][1][val[1][1]][1] = 1;
+		dp[1][1][0][0] = 1;
 		f();
 	}
 	public static void f(){
@@ -25,13 +26,15 @@ public class Main {
 				if (i == 1 && j == 1) {
 					continue;
 				}else {
-					for (int num = 1; num <= k; num++) {
+					for (int num = 0; num <= k; num++) {
 						for (int ma = 0; ma <= 13; ma++) {
-							if (ma < val[i][j]) {
-								dp[i][j][val[i][j]][num+1] = ((dp[i - 1][j][val[i][j]][num] + dp[i][j - 1][val[i][j]][num]) % M + (dp[i - 1][j][ma][num] + dp[i][j - 1][ma][num]) % M) % M;                     
-							}else{
-								dp[i][j][ma][num] = (dp[i- 1][j][ma][num] + dp[i][j - 1][ma][num]) % M;
-							}
+							if(ma < val[i][j])  
+		                    {  
+		                        dp[i][j][val[i][j]][num + 1] = (dp[i][j][val[i][j]][num + 1] + dp[i - 1][j][ma][num]) % M;  
+		                        dp[i][j][val[i][j]][num + 1] = (dp[i][j][val[i][j]][num + 1] + dp[i][j - 1][ma][num]) % M;      
+		                    }  
+		                    dp[i][j][ma][num] = (dp[i][j][ma][num] + dp[i - 1][j][ma][num]) % M;  
+		                    dp[i][j][ma][num] = (dp[i][j][ma][num] + dp[i][j - 1][ma][num]) % M;  
 						}
 						
 					}
