@@ -1,15 +1,16 @@
 import java.util.*;
-public class test {
-	String X = "ABCBDAB";
-	String Y = "BDCABA";
+public class Main1 {
+	static String X = "ABCBDAB";
+	static String Y = "BDCABA";
+	static String str = "";
 //	int m = X.length();
 //	int n = Y.length();
-	int[][] table;
+	static int[][] table;
 	TreeSet<String> set = new TreeSet<String>();
 	public static void main(String[] args) {
-		new test().PrintLcs();
+		PrintLcs();
 	}
-	public int f(int m, int n){
+	public static int f(int m, int n){
 		table = new int[m + 1][n + 1];
 		for (int i = 0; i <= m; i++) {
 			for (int j = 0; j <= n; j++) {
@@ -26,10 +27,10 @@ public class test {
 		}
 		return table[m][n];
 	}
-	public void TraceBack(int i, int j){
+	public static void TraceBack(int i, int j){
 		while (i > 0 && j > 0) {
 			if (X.charAt(i - 1) == Y.charAt(j - 1)) {
-				System.out.print(X.charAt(i - 1));
+				str += X.charAt(i - 1);
 				i--;
 				j--;
 			}else {
@@ -41,11 +42,12 @@ public class test {
 				}
 			}
 		}
-		
+		StringBuffer sb = new StringBuffer(str).reverse();
+		System.out.println(sb.toString());
 	}
-	public void PrintLcs(){
+	public static void PrintLcs(){
 		int len = f(X.length(), Y.length());
-		System.out.println("最长子序列长度：" + len);
+		System.out.println("鏈�闀垮瓙搴忓垪闀垮害鏄細" + len);
 		TraceBack(X.length(), Y.length());
 
 		
