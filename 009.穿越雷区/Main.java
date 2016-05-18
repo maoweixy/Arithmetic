@@ -4,7 +4,7 @@ public class Main {
 	static String[][] ch;
 	static int min = Integer.MAX_VALUE, n;
 	static int startx, starty, endx, endy;
-	static int dx[] = {1,0,-1,0}, dy[] = {0,1,0,-1}; //4个方向移动的向量
+	static int dx[] = {1,0,-1,0}, dy[] = {0,1,0,-1}; 
 	public static void main(String[] args){
 		Scanner in = new Scanner(System.in);
 		n = Integer.parseInt(in.nextLine());
@@ -25,14 +25,6 @@ public class Main {
 				}
 			}
 		}
-		System.out.println(startx+""+starty+""+endx+""+endy);
-//		for (int i = 0; i < S.length; i++) {
-//			for (int j = 0; j < S[i].length; j++) {
-//				System.out.print(S[i][j]);
-//				
-//			}
-//			System.out.println("");
-//		}
 		f(0,startx, starty);
 		if (min == Integer.MAX_VALUE) {
 			System.out.println(-1);
@@ -42,7 +34,6 @@ public class Main {
 	}
 	public static void f(int k, int tx, int ty){
 		if (tx == endx && ty == endy) {
-//			System.out.println("maowei");
 			if (k < min) {
 				min = k;
 			}
